@@ -2,9 +2,11 @@
   "name": "meanstack2-example",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
-    "lite": "lite-server",
+    "start": "node ./bin/www",
     "postinstall": "typings install",
+    "vendor": "gulp build-libs",
+    "gulp": "gulp clean && gulp",
+    "build:production": "gulp clean && gulp build && node systemjs.builder.js",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings"
@@ -47,14 +49,14 @@
     "mongoose": "^4.4.12",
     "mongoose-unique-validator": "^1.0.2",
     "morgan": "~1.6.1",
-    "password-hash": "^1.2.2"
+    "password-hash": "^1.2.2",
+    "serve-favicon": "~2.3.0",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4",
-
     "autoprefixer": "^6.3.6",
     "cssnano": "^3.7.1",
     "del": "^2.2.0",

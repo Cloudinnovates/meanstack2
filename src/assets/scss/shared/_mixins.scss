@@ -1,0 +1,10 @@
+@mixin truncate-lines($font-size, $line-height, $lines-to-show) {
+	font-size: $font-size;
+	line-height: $line-height;
+	display: block;
+	max-height: $font-size*$line-height*$lines-to-show;
+	-webkit-line-clamp: $lines-to-show;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
