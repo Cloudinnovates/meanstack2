@@ -1,0 +1,21 @@
+<div layout="row" layout-align="end end">
+	<button md-fab (click)="toggleForm()">
+		<md-icon class="material-icons">add</md-icon>
+	</button>
+</div>
+
+<md-card [style.display]="formShowing ? 'block' : 'none'">
+	<md-card-title>{{ formAction === 'update' ? 'Edit Message' : 'New Message' }}</md-card-title>
+	<md-card-content>
+		<form [formGroup]="messageForm">
+			<md-input placeholder="Title" type="text" formControlName="title" [(ngModel)]="msgTitle"></md-input>
+			<md-input placeholder="Text" type="text" formControlName="content" [(ngModel)]="msgContent"></md-input>
+			<div layout="row" layout-align="end end">
+				<button md-raised-button type="button" class="submit" color="warn" (click)="onCancel()">Cancel</button>
+				<button (click)="onSubmit()" md-raised-button class="submit" color="accent" [disabled]="!messageForm.valid">
+					{{ formAction === 'update' ? 'Submit Changes' : 'Create Message' }}
+				</button>
+			</div>
+		</form>
+	</md-card-content>
+</md-card>

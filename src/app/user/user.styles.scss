@@ -1,0 +1,39 @@
+@import "../../assets/scss/shared/variables";
+
+md-card {
+	padding: 0;
+
+	.formHeader {
+		background-color: $custom-light-green;
+		color: #fff;
+		font-size: 20px;
+		font-weight: 400;
+		height: 50px;
+		line-height: 50px;
+		margin: 0;
+		padding: 0 16px;
+	}
+
+	.submit {
+		margin: 20px 0 5px;
+	}
+
+	md-toolbar {
+		background-color: $custom-light-green;
+	}
+
+	md-input {
+		width: 100%;
+
+		.error {
+			&.md-hint {
+				color: red;
+				overflow: hidden;
+				position: relative;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		}
+	}
+}
+

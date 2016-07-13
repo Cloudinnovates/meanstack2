@@ -1,0 +1,9 @@
+<md-card class="message-card" flex="nogrow">
+	<img src="{{ message.image }}" alt="message image">
+	<md-card-title>{{ message.title }}</md-card-title>
+	<md-card-content>{{ message.content }}</md-card-content>
+	<md-card-actions align="end">
+		<button *ngIf="messageBelongsToUser()" md-button class="md-warn" (click)="onDelete()">Delete</button>
+		<button *ngIf="messageBelongsToUser()" md-button class="md-primary" (click)="onEdit()">Edit</button>
+	</md-card-actions>
+</md-card>

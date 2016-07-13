@@ -1,0 +1,17 @@
+<section layout="row" layout-align="center start" class="userform">
+	<md-card flex-gt-md="33" flex-md="45" flex-sm="75" flex-xs="100">
+		<h2 class="formHeader">Registration</h2>
+		<md-card-content>
+			<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+				<md-input placeholder="User name" type="text" formControlName="userName"></md-input>
+				<md-input placeholder="Email" type="text" formControlName="email"></md-input>
+				<md-input placeholder="Password (5 chars min)" type="password" formControlName="password" minLength="5">
+					<md-hint class="error" *ngIf="showErrors" align="start">Registration {{ validationErrors }}</md-hint>
+				</md-input>
+				<div layout="row" layout-align="end end">
+					<button md-raised-button class="md-primary submit" [disabled]="!registrationForm.valid">Sign up</button>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
+</section>

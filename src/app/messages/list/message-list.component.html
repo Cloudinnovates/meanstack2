@@ -1,0 +1,5 @@
+<mean-message-input></mean-message-input>
+
+<md-content class="messageList" layout="column" layout-wrap>
+	<mean-message *ngFor="let message of messages" [message]="message" (editClicked)="onEditClicked(msg = $event)"></mean-message>
+</md-content>

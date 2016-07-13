@@ -1,0 +1,19 @@
+form {
+	md-input {
+		width: 100%;
+	}
+
+	.submit {
+		margin: 20px 0 0 16px;
+	}
+}
+
+[md-fab] {
+	position: absolute;
+	right: 32px;
+	z-index: 99;
+}
+
+md-icon {
+	vertical-align: baseline;
+}

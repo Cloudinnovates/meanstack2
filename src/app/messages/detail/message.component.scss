@@ -1,0 +1,37 @@
+@import "../../../assets/scss/shared/mixins";
+
+md-card {
+	max-width: 400px
+;
+	md-card-title, md-card-content {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	md-card-title {
+		$font-size: 24px;
+		$line-height: 1.3;
+		$lines-to-show: 1;
+		max-height: unset !important;
+		padding-bottom: 0;
+		@include truncate-lines($font-size, $line-height, $lines-to-show);
+	}
+
+	md-card-content {
+		$font-size: 14px;
+		$line-height: 1.25;
+		$lines-to-show: 6;
+		height: $font-size * $line-height * $lines-to-show;
+		@include truncate-lines($font-size, $line-height, $lines-to-show);
+	}
+
+	md-card-title {
+		white-space: nowrap;
+	}
+
+	md-card-actions {
+		min-height: 62px;
+		margin-right: -16px;
+		padding: 8px;
+	}
+}

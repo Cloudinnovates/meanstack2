@@ -55,7 +55,7 @@ gulp.task('build-component-css', function () {
 });
 
 gulp.task('clean', function() {
-	del(appProd + '/**/*');
+	del([appProd + '/**/*', prodStyles + '/**/*', vendor + '/**/*']);
 });
 
 gulp.task('watch', function() {
@@ -67,4 +67,3 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['watch', 'build-ts', 'build-copy', 'build-global-css', 'build-component-css', 'build-libs']);
 gulp.task('build', ['build-ts', 'build-copy', 'build-global-css', 'build-component-css', 'build-libs']);
-

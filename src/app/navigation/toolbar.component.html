@@ -1,0 +1,12 @@
+<md-toolbar class="md-primary">
+	<div class="md-toolbar-tools" role="navigation">
+		<button md-button (click)="onSelectRoute('/index')">HOME</button>
+		<button *ngIf="!isAuth()" md-button (click)="onSelectRoute('/registration')">REGISTER</button>
+		<button *ngIf="!isAuth()" md-button (click)="onSelectRoute('/login')">LOGIN</button>
+		<button *ngIf="isAuth()" md-button (click)="onSelectRoute('/messages')">MESSAGES</button>
+		<span flex></span>
+		<button *ngIf="isAuth()" (click)="logOut()" md-icon-button aria-label="Sign Out">
+			<md-icon class="material-icons">power_settings_new</md-icon>
+		</button>
+	</div>
+</md-toolbar>
