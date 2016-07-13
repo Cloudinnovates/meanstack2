@@ -5,4 +5,4 @@
 - adjust mongodb connection in /app.js
 - node server runs on localhost:3000
 
-[Demo on Heroku](http://secret-hamlet-8254.herokuapp.com/)
+[Demo on Heroku](https://meanstack2.herokuapp.com)
