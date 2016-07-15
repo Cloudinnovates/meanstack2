@@ -26,6 +26,7 @@ var packageNames = [
     '@angular/upgrade',
 	'@angular2-material/core',
 	'@angular2-material/sidenav',
+	'@angular2-material/list',
 	'@angular2-material/toolbar'
 ];
 

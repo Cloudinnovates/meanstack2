@@ -4,6 +4,7 @@ import {
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar/toolbar';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button/button';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav/sidenav';
+import { MD_LIST_DIRECTIVES } from '@angular2-material/list/list';
 import {
     ROUTER_DIRECTIVES,
     Router
@@ -15,10 +16,10 @@ import { UserService } from '../user/user.service';
     selector: 'mean-navigation',
     templateUrl: 'navigation.component.html',
     styleUrls: ['navigation.component.css'],
-    directives:  [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_SIDENAV_DIRECTIVES,  ROUTER_DIRECTIVES]
+    directives:  [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_SIDENAV_DIRECTIVES, MD_LIST_DIRECTIVES, ROUTER_DIRECTIVES]
 })
 
-export class ToolbarComponent {
+export class NavigationComponent {
 
     constructor(private userService: UserService, private router: Router) {}
 

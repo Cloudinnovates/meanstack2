@@ -2,8 +2,19 @@ md-toolbar {
 	a {
 		font-family: 'Lato', sans-serif;
 	}
-
 	.md-toolbar-tools {
 		padding-left: 0;
 	}
+}
+
+md-sidenav-layout {
+	z-index: 99;
+	.md-sidenav-backdrop {
+		z-index: 99;
+	}
+}
+
+.secondary {
+	color: #999;
+	padding-top: 4px !important;
 }
