@@ -10,6 +10,7 @@ import { LoginComponent } from './user/login/login.component';
 import { MessageListComponent } from './messages/list/message-list.component';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav/sidenav';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list/list';
+import { ProfileComponent } from './user/profile/profile.component';
 
 @Component({
     moduleId: module.id,
@@ -30,6 +31,6 @@ import { MD_LIST_DIRECTIVES } from '@angular2-material/list/list';
         }
     `],
     directives: [ ROUTER_DIRECTIVES, NavigationComponent, MD_SIDENAV_DIRECTIVES, MD_LIST_DIRECTIVES],
-    precompile: [HomeComponent, RegistrationComponent, LoginComponent, MessageListComponent]
+    precompile: [HomeComponent, RegistrationComponent, LoginComponent, ProfileComponent, MessageListComponent]
 })
 export class AppComponent {}

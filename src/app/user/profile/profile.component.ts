@@ -17,18 +17,19 @@ import { ErrorService } from '../error.service';
 @Component({
     moduleId: module.id,
     selector: 'mean-login',
-    templateUrl: 'login.component.html',
+    templateUrl: 'profile.component.html',
     styleUrls: ['../user.styles.css'],
     directives: [MD_INPUT_DIRECTIVES, MD_CARD_DIRECTIVES, REACTIVE_FORM_DIRECTIVES]
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
     loginForm: FormGroup;
     validationError: string;
     showErrors: boolean = false;
 
     constructor(private fb: FormBuilder, private userService: UserService, private errorService: ErrorService, private router: Router) {}
 
+    /*
     ngOnInit():FormGroup {
         return this.loginForm = this.fb.group({
             email: ['', Validators.compose([
@@ -41,6 +42,7 @@ export class ProfileComponent implements OnInit {
             ])]
         });
     }
+    */
 
     onSubmit():void {}
 

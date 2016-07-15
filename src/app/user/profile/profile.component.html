@@ -1,1 +1,14 @@
-<h1>User Profile</h1>
+<section layout="row" layout-align="center start" class="userform">
+	<md-card flex-gt-md="33" flex-md="45" flex-sm="75" flex-xs="100">
+		<h2 class="formHeader">Login</h2>
+		<md-card-content>
+			<form (ngSubmit)="onSubmit()">
+				<md-input placeholder="Email" type="text"></md-input>
+
+				<div layout="row" layout-align="end end">
+					<button md-raised-button class="md-primary submit">Edit Profile</button>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
+</section>
