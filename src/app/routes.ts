@@ -9,7 +9,7 @@ import { MessageListComponent } from './messages/list/message-list.component';
 
 
 export const routes: RouterConfig = [
-    { path: '', component: HomeComponent },
+    { path: '', pathMatch: 'prefix', redirectTo: 'index' },
     { path: 'index', component: HomeComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'login', component: LoginComponent },
