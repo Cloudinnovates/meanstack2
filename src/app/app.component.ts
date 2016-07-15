@@ -3,14 +3,9 @@ import {
     ROUTER_DIRECTIVES,
     Router
 } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { RegistrationComponent } from './user/registration/registration.component';
-import { LoginComponent } from './user/login/login.component';
-import { MessageListComponent } from './messages/list/message-list.component';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav/sidenav';
 import { MD_LIST_DIRECTIVES } from '@angular2-material/list/list';
-import { ProfileComponent } from './user/profile/profile.component';
 
 @Component({
     moduleId: module.id,
@@ -18,10 +13,6 @@ import { ProfileComponent } from './user/profile/profile.component';
     template: `
         <div layout="column" layout-fill>
             <mean-navigation></mean-navigation>
-            <md-content flex layout-fill class="content">
-                <router-outlet></router-outlet>
-            </md-content>
-               
         </div>
     `,
     styles: [`
@@ -31,6 +22,5 @@ import { ProfileComponent } from './user/profile/profile.component';
         }
     `],
     directives: [ ROUTER_DIRECTIVES, NavigationComponent, MD_SIDENAV_DIRECTIVES, MD_LIST_DIRECTIVES],
-    precompile: [HomeComponent, RegistrationComponent, LoginComponent, ProfileComponent, MessageListComponent]
 })
 export class AppComponent {}
