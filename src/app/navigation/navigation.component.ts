@@ -3,21 +3,19 @@ import {
 } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar/toolbar';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button/button';
+import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav/sidenav';
 import {
     ROUTER_DIRECTIVES,
     Router
 } from '@angular/router';
-
-
 import { UserService } from '../user/user.service';
-
 
 @Component({
     moduleId: module.id,
-    selector: 'mean-toolbar',
-    templateUrl: 'toolbar.component.html',
-    styleUrls: ['toolbar.component.css'],
-    directives:  [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, ROUTER_DIRECTIVES]
+    selector: 'mean-navigation',
+    templateUrl: 'navigation.component.html',
+    styleUrls: ['navigation.component.css'],
+    directives:  [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_SIDENAV_DIRECTIVES,  ROUTER_DIRECTIVES]
 })
 
 export class ToolbarComponent {
