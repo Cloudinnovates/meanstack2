@@ -8,7 +8,8 @@ import {
     FormBuilder
 } from '@angular/forms';
 import {
-    Router
+    Router,
+    ActivatedRoute
 } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -22,12 +23,23 @@ import { ErrorService } from '../error.service';
     directives: [MD_INPUT_DIRECTIVES, MD_CARD_DIRECTIVES, REACTIVE_FORM_DIRECTIVES]
 })
 
-export class ProfileComponent {
-    loginForm: FormGroup;
+export class ProfileComponent implements OnInit {
+    //loginForm: FormGroup;
     validationError: string;
-    showErrors: boolean = false;
+    //showErrors: boolean = false;
+    userId: string = localStorage.getItem('userId');
 
-    constructor(private fb: FormBuilder, private userService: UserService, private errorService: ErrorService, private router: Router) {}
+    constructor(private fb: FormBuilder, private userService: UserService, private errorService: ErrorService, private router: Router, private activatedRoute: ActivatedRoute) {}
+
+    ngOnInit():any {
+        console.log(this.activatedRoute);
+        this.userService.getProfile(this.userId)
+            .subscribe(
+                data => console.log('data', data),
+                error => console.log('error', error)
+            );
+        return null;
+    }
 
     /*
     ngOnInit():FormGroup {

@@ -1,5 +1,6 @@
 import {
-    Component
+    Component,
+    ViewChild
 } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar/toolbar';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button/button';
@@ -15,6 +16,7 @@ import { ProfileComponent } from '../user/profile/profile.component';
 import { LoginComponent } from '../user/login/login.component';
 import { RegistrationComponent } from '../user/registration/registration.component';
 import { HomeComponent } from '../home/home.component';
+import { MdSidenav } from '@angular2-material/sidenav/sidenav';
 
 @Component({
     moduleId: module.id,
@@ -22,15 +24,19 @@ import { HomeComponent } from '../home/home.component';
     templateUrl: 'navigation.component.html',
     styleUrls: ['navigation.component.css'],
     directives:  [MD_BUTTON_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_SIDENAV_DIRECTIVES, MD_LIST_DIRECTIVES, ROUTER_DIRECTIVES],
+    providers: [MdSidenav],
     precompile: [HomeComponent, RegistrationComponent, LoginComponent, ProfileComponent, MessageListComponent]
 })
 
 export class NavigationComponent {
+    @ViewChild('sidenav') sidenav;
+    userName: string = localStorage.getItem('userName');
 
     constructor(private userService: UserService, private router: Router) {}
 
-    onSelectRoute(route: string):void {
-        this.router.navigate([route]);
+    onSelectRoute(route: string, id: string):void {
+        id = id || '';
+        this.router.navigate([route, id]);
     }
 
     isAuth():boolean {

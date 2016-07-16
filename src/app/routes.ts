@@ -10,7 +10,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 
 
 export const routes: RouterConfig = [
-    { path: '', pathMatch: 'prefix', redirectTo: 'index' },
+    { path: '', pathMatch: 'full', redirectTo: 'index' },
     { path: 'index', component: HomeComponent },
     { path: 'registration', component: RegistrationComponent },
     { path: 'login', component: LoginComponent },

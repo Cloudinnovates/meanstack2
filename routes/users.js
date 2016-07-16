@@ -6,6 +6,8 @@ var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
 /* /user */
+
+
 router.post('/', function(req, res, next) {
 	var user = new User({
 		userName: req.body.userName,
@@ -64,6 +66,36 @@ router.post('/signin', function(req, res, next) {
 
 	});
 });
+
+router.use('/', function (req, res, next) {
+	jwt.verify(req.query.token, 'secret', function (err, decoded) {
+		if (err) {
+			return res.status(401).json({
+				title: 'Auth failed',
+				error: err
+			});
+		}
+		next();
+	});
+});
+
+router.get('/:id', function(req, res, next) {
+	var decoded = jwt.decode(req.query.token);
+
+	User.findById(decoded.user._id, function(err, doc) {
+		if (err) {
+			return res.status(404).json({
+				title: 'an error occured',
+				error: err
+			});
+		}
+		res.status(200).json({
+			message: 'Bingo',
+			obj: doc
+		});
+	});
+});
+
 
 
 module.exports = router;

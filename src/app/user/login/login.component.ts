@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('userId', data.userId);
+                    localStorage.setItem('userName', data.userName);
                    this.router.navigate(['/messages']);
                 },
                 error => {
