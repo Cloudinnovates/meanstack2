@@ -19,14 +19,14 @@ export class UserService {
     private token: string = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
     private userLoggedIn = new EventEmitter<any>();
     private userLoggedOut = new EventEmitter<any>();
+    private headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(private http: Http) {}
 
     signup(user: User): Observable<any> {
         const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post(this.url + '/user', body, {headers: headers})
+        return this.http.post(this.url + '/user', body, {headers: this.headers})
             .map(response => response.json())
             .catch(error => Observable.throw(error.json()));
 
@@ -34,18 +34,32 @@ export class UserService {
 
     signin(user: User): Observable<any> {
         const body = JSON.stringify(user);
-        const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post(this.url + '/user/signin', body, {headers: headers})
+        return this.http.post(this.url + '/user/signin', body, {headers: this.headers})
             .map(response => response.json())
             .catch(error => Observable.throw(error.json()));
 
     }
 
-    getProfile(userId: string) {
-
+    getUser(userId: string): Observable<any> {
         return this.http.get(this.url + '/user/' + userId + this.token)
-            .map(response => response.json().obj)
+            .map(response => {
+                const data = response.json().obj;
+                const user = new User(data.email, null, null, data.firstName, data.lastName);
+                return user;
+            })
+            .catch(error => Observable.throw(error.json()));
+    }
+
+    updateUser(user: User, userId: string) {
+        const body = JSON.stringify(user);
+
+        return this.http.patch(this.url + '/user/' + userId + this.token, body, {headers: this.headers})
+            .map(
+                response => {
+                    return response;
+                }
+            )
             .catch(error => Observable.throw(error.json()));
     }
 

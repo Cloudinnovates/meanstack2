@@ -56,7 +56,7 @@ export class MessageInputComponent implements OnInit {
     onSubmit():void {
         if (this.formAction === 'create') {
             let created_at = Date.now();
-            let image = 'http://lorempixel.com/400/220/' + this.createImgCategory();
+            let image = 'http://xoart.link/400/220/' + this.createImgCategory();
             let message = new Message(this.messageForm.value.title, this.messageForm.value.content, created_at, image);
 
             this.messageService.createMessage(message).subscribe(
@@ -93,7 +93,7 @@ export class MessageInputComponent implements OnInit {
     }
 
     private createImgCategory():string {
-        let categories = ['abstract', 'city', 'people', 'animals', 'food', 'nature', 'business', 'nightlife', 'cats', 'fashion', 'technics'];
+        let categories = ['abstract', 'city', 'people', 'cats', 'food', 'nature', 'business', 'nightlife', 'nature', 'fashion', 'technics'];
         return categories[Math.floor(Math.random() * categories.length)];
     }
 

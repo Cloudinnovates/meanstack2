@@ -5,9 +5,6 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 
-/* /user */
-
-
 router.post('/', function(req, res, next) {
 	var user = new User({
 		userName: req.body.userName,
@@ -16,7 +13,6 @@ router.post('/', function(req, res, next) {
 	});
 
 	user.save(function (err, result) {
-
 		if (err) {
 			return res.status(404).json({
 				title: 'An error occured',
@@ -89,13 +85,55 @@ router.get('/:id', function(req, res, next) {
 				error: err
 			});
 		}
+		if (!doc) {
+			return res.status(400).json({
+				title: 'An error occured',
+				error: 'User not found'
+			});
+		}
 		res.status(200).json({
-			message: 'Bingo',
+			message: 'User found',
 			obj: doc
 		});
 	});
 });
 
+router.patch('/:id', function (req, res, next) {
+	var decoded = jwt.decode(req.query.token);
 
+	User.findById(decoded.user._id, function(err, doc) {
+		if (err) {
+			return res.status(404).json({
+				title: 'an error occured',
+				error: err
+			});
+		}
+		if (!doc) {
+			return res.status(400).json({
+				title: 'An error occured',
+				error: 'User not found'
+			});
+		}
+		if (req.body.firstName) {
+			doc.firstName = req.body.firstName;
+		}
+		if (req.body.lastName) {
+			doc.lastName = req.body.lastName;
+		}
+		doc.email = req.body.email;
+		doc.save(function(err, result) {
+			if (err) {
+				return res.status(404).json({
+					title: 'An error occured',
+					error: err
+				});
+			}
+			res.status(200).json({
+				message: 'Success',
+				obj: result
+			});
+		});
+	});
+});
 
 module.exports = router;

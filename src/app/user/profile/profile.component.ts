@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input/input';
 import { MD_CARD_DIRECTIVES } from '@angular2-material/card/card';
 import {
     REACTIVE_FORM_DIRECTIVES,
-    Validators,
-    FormGroup,
-    FormBuilder
+    NgForm
 } from '@angular/forms';
 import {
     Router,
@@ -24,38 +25,50 @@ import { ErrorService } from '../error.service';
 })
 
 export class ProfileComponent implements OnInit {
-    //loginForm: FormGroup;
-    validationError: string;
-    //showErrors: boolean = false;
+    validationError: string[] = [];
+    showErrors: boolean = false;
     userId: string = localStorage.getItem('userId');
 
-    constructor(private fb: FormBuilder, private userService: UserService, private errorService: ErrorService, private router: Router, private activatedRoute: ActivatedRoute) {}
+    user: any = {
+        firstName: '',
+        lastName: '',
+        email: ''
+    }
+
+    pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    constructor(private userService: UserService, private errorService: ErrorService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
     ngOnInit():any {
         console.log(this.activatedRoute);
-        this.userService.getProfile(this.userId)
+        this.userService.getUser(this.userId)
             .subscribe(
-                data => console.log('data', data),
+                data => {
+                    this.user.firstName = data.firstName;
+                    this.user.lastName = data.lastName;
+                    this.user.email = data.email;
+                },
                 error => console.log('error', error)
             );
-        return null;
     }
 
-    /*
-    ngOnInit():FormGroup {
-        return this.loginForm = this.fb.group({
-            email: ['', Validators.compose([
-                Validators.required,
-                this.errorService.isValidMailPattern
-            ])],
-            password: ['', Validators.compose([
-                Validators.required,
-                Validators.minLength(5)
-            ])]
-        });
-    }
-    */
+    onSubmit(form: NgForm):void {
+        let firstName = !form.value.firstName ? null : form.value.firstName;
+        let lastName = !form.value.lastName ? null : form.value.lastName;
+        let email = form.value.email;
+        let user = new User(email, null, null, firstName, lastName);
 
-    onSubmit():void {}
+        this.userService.updateUser(user, this.userId)
+            .subscribe(
+                data => this.router.navigate(['/messages']),
+                error => {
+                    this.validationError = this.errorService.onSignupErrors(error);
+                    this.showErrors = true;
+                }
+            );
+    }
+    onCancel():void {
+        this.router.navigate(['/messages']);
+    };
 
 }

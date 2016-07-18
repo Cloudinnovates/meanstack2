@@ -1,12 +1,57 @@
+<!--
 <section layout="row" layout-align="center start" class="userform">
 	<md-card flex-gt-md="33" flex-md="45" flex-sm="75" flex-xs="100">
-		<h2 class="formHeader">Profile</h2>
+		<h2 class="formHeader">Update Profile</h2>
 		<md-card-content>
-			<form (ngSubmit)="onSubmit()">
-				<md-input placeholder="Email" type="text"></md-input>
+			<form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+				<md-input placeholder="First Name" type="text" #firstName="ngModel" [(ngModel)]="firstName"></md-input>
+				<md-input placeholder="Last Name" type="text" #lastName="ngModel" [(ngModel)]="lastName"></md-input>
+				<md-input placeholder="Email" type="text" #email="ngModel" [(ngModel)]="email" pattern="pattern">
+					<md-hint class="error" *ngIf="showErrors" align="start">Update {{ validationErrors }}</md-hint>
+				</md-input>
 
 				<div layout="row" layout-align="end end">
-					<button md-raised-button class="md-primary submit">Edit Profile</button>
+					<button md-raised-button type="button" class="submit md-warn" (click)="onCancel()">Cancel</button>
+					<button md-raised-button class="submit md-accent" [disabled]="!profileForm.valid">Submit changes</button>
+				</div>
+			</form>
+		</md-card-content>
+	</md-card>
+</section>
+-->
+
+<section layout="row" layout-align="center start" class="userform">
+	<md-card flex-gt-md="33" flex-md="45" flex-sm="75" flex-xs="100">
+		<h2 class="formHeader">Update Profile</h2>
+		<md-card-content>
+			<form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+
+				<md-input placeholder="First Name"
+				          type="text"
+				          [(ngModel)]="user.firstName"
+				          name="firstName"
+				          #firstName="ngModel"
+				></md-input>
+
+				<md-input placeholder="Last Name"
+				          type="text"
+				          [(ngModel)]="user.lastName"
+				          name="lastName"
+				          #lastName="ngModel"
+				></md-input>
+
+				<md-input placeholder="Email"
+				          type="text"
+				          [(ngModel)]="user.email"
+				          name="email"
+				          required
+				          pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+				          #email="ngModel">
+					<md-hint class="error" *ngIf="showErrors" align="start">Registration {{ validationError }}</md-hint>
+				</md-input>
+				<div layout="row" layout-align="end end">
+					<button md-raised-button type="button" class="submit md-warn" (click)="onCancel()">Cancel</button>
+					<button md-raised-button class="submit md-accent" [disabled]="!profileForm.valid">Submit changes</button>
 				</div>
 			</form>
 		</md-card-content>
