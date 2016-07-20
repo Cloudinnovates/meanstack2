@@ -17,6 +17,7 @@ export class UserService {
     private url: string = 'http://localhost:3000';
     //private url: string = 'https://meanstack2-example.herokuapp.com';
     private token: string = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+    private userName: string = localStorage.getItem('userName') ? localStorage.getItem('userName') : '';
     private userLoggedIn = new EventEmitter<any>();
     private userLoggedOut = new EventEmitter<any>();
     private headers = new Headers({'Content-Type': 'application/json'});
@@ -42,7 +43,9 @@ export class UserService {
     }
 
     getUser(userId: string): Observable<any> {
-        return this.http.get(this.url + '/user/' + userId + this.token)
+        let token:string = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+
+        return this.http.get(this.url + '/user/' + userId + token)
             .map(response => {
                 const data = response.json().obj;
                 const user = new User(data.email, null, null, data.firstName, data.lastName);
@@ -76,7 +79,7 @@ export class UserService {
         return this.userLoggedOut;
     }
 
-    getSignedInEvent(): EventEmitter<any> {
-        return this.userLoggedIn;
+    getSignedInEvent(): void {
+       this.userLoggedIn;
     }
 }

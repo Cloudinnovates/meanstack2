@@ -1,5 +1,5 @@
 <md-sidenav-layout fullscreen>
-	<md-sidenav #sidenav>
+	<md-sidenav #sidenav *ngIf="isAuth()">
 		<md-nav-list>
 			<a [routerLink]="['user', userName]" (click)="sidenav.toggle()" md-list-item>
 				<md-icon md-list-icon class="material-icons">assignment ind</md-icon>

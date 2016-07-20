@@ -30,20 +30,31 @@ import { MdSidenav } from '@angular2-material/sidenav/sidenav';
 
 export class NavigationComponent {
     @ViewChild('sidenav') sidenav;
-    userName: string = localStorage.getItem('userName');
+    userName: string;
+    token: string;
 
     constructor(private userService: UserService, private router: Router) {}
 
-    onSelectRoute(route: string, id: string):void {
-        id = id || '';
-        this.router.navigate([route, id]);
+    onSelectProfile(): void {
+        this.token = localStorage.getItem('token');
+        this.router.navigate(['user/Admin']);
     }
 
-    isAuth():boolean {
+    onSelectRoute(route: string):void {
+        this.router.navigate([route]);
+    }
+
+    isSignedIn(): any {
+        this.userService.getSignedInEvent();
+        return this.userName = localStorage.getItem('userName');
+    }
+
+    isAuth(): boolean {
+        this.userName = localStorage.getItem('userName');
         return this.userService.isAuthenticated();
     }
 
-    logOut():void {
+    logOut(): void {
         this.userService.signOut();
         this.router.navigate(['index']);
     }

@@ -9,8 +9,7 @@ import {
     NgForm
 } from '@angular/forms';
 import {
-    Router,
-    ActivatedRoute
+    Router
 } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -37,10 +36,9 @@ export class ProfileComponent implements OnInit {
 
     pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    constructor(private userService: UserService, private errorService: ErrorService, private router: Router, private activatedRoute: ActivatedRoute) {}
+    constructor(private userService: UserService, private errorService: ErrorService, private router: Router) {}
 
     ngOnInit():any {
-        console.log(this.activatedRoute);
         this.userService.getUser(this.userId)
             .subscribe(
                 data => {
