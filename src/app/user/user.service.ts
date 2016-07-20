@@ -14,8 +14,8 @@ import { Observable } from 'rxjs/Rx';
 
 export class UserService {
 
-    private url: string = 'http://localhost:3000';
-    //private url: string = 'https://meanstack2-example.herokuapp.com';
+    //private url: string = 'http://localhost:3000';
+    private url: string = 'https://meanstack2-example.herokuapp.com';
     private token: string = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
     private userLoggedIn = new EventEmitter<any>();
     private userLoggedOut = new EventEmitter<any>();
