@@ -43,7 +43,7 @@ export class UserService {
     }
 
     getUser(userId: string): Observable<any> {
-        let token:string = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
 
         return this.http.get(this.url + '/user/' + userId + token)
             .map(response => {
@@ -56,8 +56,9 @@ export class UserService {
 
     updateUser(user: User, userId: string) {
         const body = JSON.stringify(user);
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
 
-        return this.http.patch(this.url + '/user/' + userId + this.token, body, {headers: this.headers})
+        return this.http.patch(this.url + '/user/' + userId + token, body, {headers: this.headers})
             .map(
                 response => {
                     return response;
