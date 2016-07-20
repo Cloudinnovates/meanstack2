@@ -20,7 +20,7 @@ import { ErrorService } from '../error.service';
     moduleId: module.id,
     selector: 'mean-login',
     templateUrl: 'profile.component.html',
-    styleUrls: ['../user.styles.css'],
+    styleUrls: ['../user.component.css'],
     directives: [MD_INPUT_DIRECTIVES, MD_CARD_DIRECTIVES, REACTIVE_FORM_DIRECTIVES]
 })
 
